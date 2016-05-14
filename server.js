@@ -22,11 +22,10 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 
-app.get('/weather',  (req, res) => {
+app.get('/weather', (req, res) => {
   var query = req.query.location;
   request({ url: api_key + query, json: true },
     function(err, apires, body) {
-      console.log(query);
       res.send(body)
     })
 });
@@ -36,9 +35,10 @@ app.get('/geo', (req, res) => {
   json: true },
     function(err, apires, body) {
       res.send(body)
-      console.log(body.results[0].geometry.location.lat);
+      // console.log(body.results[0].geometry.location.lat);
     })
 });
+
 
 app.get('/', (req, res) => {
   res.render('index')
