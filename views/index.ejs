@@ -6,7 +6,26 @@
 </head>
 
 <body>
-<h1>Hello World</h1>
+  <div class="container">
+    <div class="nine columns">
+      <h1>Hello World</h1>
+      <!-- <form action="/weather" method="GET">
+        <label>Enter your location</label>
+        <input type="text" placeholder="enter a location" name="location">
+        <button type="submit">Submit</button>
+      </form> -->
+
+      <form action="/geo" method="GET">
+        <label>Enter your location</label>
+        <input type="text" placeholder="enter a location" name="address">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="nine columns">
+      <%- include ./partials/weather %>
+    </div>
+  </div>
 
 
 
