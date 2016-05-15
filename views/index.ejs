@@ -9,21 +9,23 @@
   <div class="container">
     <div class="nine columns">
       <h1>Hello World</h1>
-      <!-- <form action="/weather" method="GET">
-        <label>Enter your location</label>
-        <input type="text" placeholder="enter a location" name="location">
-        <button type="submit">Submit</button>
-      </form> -->
 
-      <form action="/geo" method="GET">
+      <!-- <form action="/weather" method="GET">
         <label>Enter your location</label>
         <input type="text" placeholder="enter a location" name="address">
         <button type="submit">Submit</button>
-      </form>
-    </div>
+      </form> -->
 
-    <div class="nine columns">
-      <%- include ./partials/weather %>
+      <form>
+        <label>Enter your location</label>
+        <input type="text" placeholder="enter a location" name="address" id="address">
+
+        <input type="button" id="submit-btn" value="submit">
+      </form>
+
+    </div>
+    <div class="forecast">
+
     </div>
   </div>
 
