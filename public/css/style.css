@@ -28,12 +28,14 @@ body {
 }
 
 .card {
-  width: 15em;
-  height: 20em;
-  padding: 1em;
   text-align: center;
-  /*background-color: white;*/
-  border-left: .15em solid #cccccc;
-  border-right: .15em solid #cccccc;
-  /*border-radius: .25em;*/
+}
+
+.forecast {
+  float: left;
+  margin: 1.5em .5em;
+  padding: 1em;
+  border: 1px solid #cccccc;
+  width: 10em;
+  height: auto;
 }
