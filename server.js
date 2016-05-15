@@ -21,23 +21,16 @@ app.set('view engine', 'ejs')
 
 
 app.get('/weather/:address', (req, res) => {
-  console.log(req.params.address);
+
   request(
     { url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.address + 'key=' + process.env.GEOKEY,
   json: true },
     function(err, apires, body) {
-      console.log('server', body);
+
       let query = [body.results[0].geometry.location.lat, body.results[0].geometry.location.lng];
 
       request({ url: api_key + query, json: true },
         function(err, apires, apibody) {
-          // res.render('weather',
-          // {
-          //   timezone: apibody.timezone,
-          //   humidity: apibody.currently.humidity,
-          //   windSpeed: apibody.currently.windSpeed
-          // })
-          // console.log(apibody);
           res.send(apibody)
         })
     })
@@ -49,7 +42,6 @@ app.get('/', (req, res) => {
 });
 
 // app.use('/users', require(path.join(__dirname, '/routes/users')));
-// app.use('/', require(path.join(__dirname, '/routes/')));
 
 const port   = process.env.PORT || 3000;
 const server = app.listen(port, function( ){});
