@@ -6,12 +6,12 @@ $(document).ready(function(){
     console.log('click worked');
 
     $.get('/weather/' + $('#address').val())
-    .done((data) => {
-      // data.forEach(el => {
-      //   $('.forecast').append('<p>').text(el);
-      //
-      // })
-      console.log(data);
+    .done( (data) => {
+        $('.forecast').append(
+          '<p>' + data.currently.humidity +  '<p>',
+          '<p>' + data.currently.windSpeed +  '<p>'
+        );
+      console.log('data', data);
     })
 
   })
