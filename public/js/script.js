@@ -1,19 +1,19 @@
 $(document).ready(function(){
-  console.log('load');
 
   function convertDate(num) {
     var stringDate = num.toString();
     var daily = stringDate + '000';
     var numDate = parseInt(daily);
 
-    var weatherDate = moment(numDate).format("DD-MM-YYYY");
+    var weatherDate = moment(numDate).format("MM/DD/YYYY");
 
     return weatherDate;
   }
 
-
   $('#submit-btn').on('click', function() {
     event.preventDefault();
+    
+    $('#weather-info').empty();
 
     $.get('/weather/' + $('#address').val())
       .done( (data) => {
@@ -23,28 +23,40 @@ $(document).ready(function(){
         weatherData.forEach(el => {
           var time = convertDate(el.time);
 
-          console.log(el.time);
-
           $('.card').append(
-            '<div class="forecast"> <p>'
+            '<div class="forecast"> <div class="sun"></div> <p>'
             + time +
-            '</p> <p>'
+            '</p> <p> Max Temperature: '
+            + el.temperatureMax +
+            '</p> <p> Min Temperature: '
+            + el.temperatureMin +
+            '</p> <p> Humidity: '
             + el.humidity +
-            '</p> <p>'
+            '</p> <p> Wind Speed: '
             + el.windSpeed +
-            '</p> <p>'
+            '</p> <p> Visibility: '
             + el.visibility +
-            '</p> <p>'
-            + el.cloudCover +
-            '</p> <p>'
+            '</p> <p> Cloud Cover: '
+            + el.cloudCover  +
+            '</p> <p> Summary: '
             + el.summary +
             '</p> </div>'
           );
+
+          if(el.cloudCover > .5){
+            $('.sun').addClass('cloudy');
+          }
+          else if(el.cloudCover >= 0 && el.cloudCover < .29) {
+            $('.sun').addClass('sunny');
+            console.log(el.cloudCover);
+          }
+          else if(el.cloudCover > .3 && el.cloudCover < .49) {
+            $('.sun').addClass('partly-cloudy');
+          }
+
         })
+      })
     })
-
-  })
-
 })
 
 // const data = {

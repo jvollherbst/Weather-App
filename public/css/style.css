@@ -23,8 +23,20 @@ body {
   margin-bottom: 3em;
   width: 8em;
   height: 8em;
-  background-color: yellow;
+  /*background-color: yellow;*/
   border-radius: 100px;
+}
+
+.cloudy {
+  background-color: #333333;
+}
+
+.partly-cloudy {
+  background-color: #
+}
+
+.sunny {
+  background-color: yellow;
 }
 
 .card {
@@ -33,7 +45,7 @@ body {
 
 .forecast {
   float: left;
-  margin: 1.5em .5em;
+  margin: 1.75em .5em;
   padding: 1em;
   border: 1px solid #cccccc;
   width: 10em;
