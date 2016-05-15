@@ -11,6 +11,17 @@ const moment      = require('moment');
 const app         = express();
 const api_key     = process.env.API_KEY;
 
+app.use(session({
+  store: new pgSession({
+    pg : pg,
+    conString : connectionString,
+    tableName : 'session'
+  }),
+  secret: process.env.SECRET,
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
+}))
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
