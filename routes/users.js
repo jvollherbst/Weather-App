@@ -1,22 +1,19 @@
-var users      = express.Router();
-var db         = require('./../db/pg');
+'use strict'
+const express     = require('express');
+const users = express.Router();
+const db    = require('./../db/pg');
 
 users.route('/')
   .post(db.createUser, (req, res) => {
-    res.redirect('index');
-  })
-
-users.route('/success')
-  .get((req, res) => {
-    res.render('users/success.ejs',  {user: req.session.user})
+    res.redirect('/');
   })
 
 users.get('/new', (req, res) => {
-  res.render('users/new.ejs', {user: req.session.user});
+  res.render('users/new.ejs', { user: req.session.user });
 })
 
 users.get('/login', (req, res) => {
-  res.render('users/login.ejs', {user: req.session.user});
+  res.render('users/login.ejs', { user: req.session.user });
 })
 
 users.post('/login', db.loginUser, (req, res) => {

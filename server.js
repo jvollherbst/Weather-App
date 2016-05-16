@@ -9,6 +9,10 @@ const request     = require('request');
 const db          = require('./db/pg');
 const moment      = require('moment');
 const app         = express();
+var session       = require('express-session');
+var pg            = require('pg');
+var pgSession = require('connect-pg-simple')(session);
+var connectionString = process.env.DATABASE_URL;
 const api_key     = process.env.API_KEY;
 
 app.use(session({
@@ -19,6 +23,7 @@ app.use(session({
   }),
   secret: process.env.SECRET,
   resave: false,
+  saveUninitialized: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }))
 
@@ -49,10 +54,12 @@ app.get('/weather/:address', (req, res) => {
 
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', {
+    user: req.session.user
+  })
 });
 
-// app.use('/users', require(path.join(__dirname, '/routes/users')));
+app.use('/users', require(path.join(__dirname, '/routes/users')));
 
 const port   = process.env.PORT || 3000;
 const server = app.listen(port, function( ){});
