@@ -62,5 +62,28 @@ function createUser(req, res, next) {
   }
 }
 
+function addSearches(req, res, next) {
+
+  pg.connect(connectionString, function(err, client, done) {
+
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    var query = client.query("INSERT INTO searches (latitude, longitude, user_id) VALUES($1, $2, $3)",
+    [req.body.latitude, req.body.longitude, req.session.user.users_id],
+    function(err, result) {
+      done()
+      if(err) {
+        return console.error('error, running query', err);
+      }
+      next()
+    });
+  });
+}
+
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+module.exports.addSearches = addSearches;

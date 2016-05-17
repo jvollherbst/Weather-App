@@ -54,11 +54,15 @@ app.get('/weather/:address', (req, res) => {
     })
 });
 
+app.post('/searches', db.addSearches, (req, res) => {
+
+})
 
 app.get('/', (req, res) => {
   res.render('index', {
     user: req.session.user
   })
+  console.log(req.session.user);
 });
 
 app.use('/users', require(path.join(__dirname, '/routes/users')));
