@@ -62,6 +62,28 @@ function createUser(req, res, next) {
   }
 }
 
+function showSearches(req, res, next) {
+
+  pg.connect(connectionString, function(err, client, done) {
+
+    if(err) {
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+
+    var query = client.query(`SELECT * FROM searches WHERE user_id = $1`,
+    [req.session.user.users_id],
+    function(err, result) {
+      done()
+      if(err) {
+        return console.error('error, running query', err);
+      }
+      next()
+    });
+  });
+}
+
 function addSearches(req, res, next) {
 
   pg.connect(connectionString, function(err, client, done) {
@@ -72,8 +94,8 @@ function addSearches(req, res, next) {
       return res.status(500).json({ success: false, data: err});
     }
 
-    var query = client.query("INSERT INTO searches (latitude, longitude, user_id) VALUES($1, $2, $3)",
-    [req.body.latitude, req.body.longitude, req.session.user.users_id],
+    var query = client.query(`INSERT INTO searches (location, latitude, longitude, user_id) VALUES($1, $2, $3, $4)`,
+    [req.body.location, req.body.latitude, req.body.longitude, req.session.user.users_id],
     function(err, result) {
       done()
       if(err) {
@@ -86,4 +108,5 @@ function addSearches(req, res, next) {
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+module.exports.showSearches = showSearches;
 module.exports.addSearches = addSearches;

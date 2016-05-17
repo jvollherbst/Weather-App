@@ -54,6 +54,22 @@ app.get('/weather/:address', (req, res) => {
     })
 });
 
+app.get('/searches', db.showSearches, (req, res) =>
+{
+  // let query = {
+  //   latitude: res.rows.latitude,
+  //   longitude: res.rows.longitude
+  // };
+
+  console.log(res.rows);
+
+  // request({ url: api_key + query, json: true },
+  //   function(err, apires, apibody) {
+  //     res.send(apibody)
+  //   })
+
+})
+
 app.post('/searches', db.addSearches, (req, res) => {
 
 })
@@ -62,7 +78,7 @@ app.get('/', (req, res) => {
   res.render('index', {
     user: req.session.user
   })
-  console.log(req.session.user);
+
 });
 
 app.use('/users', require(path.join(__dirname, '/routes/users')));
