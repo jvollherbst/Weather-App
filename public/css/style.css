@@ -51,3 +51,7 @@ body {
   width: 10em;
   height: auto;
 }
+
+.forecast > p {
+  margin: .25em 0;
+}
