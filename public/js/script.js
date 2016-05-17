@@ -19,7 +19,10 @@ $(document).ready(function(){
     //   .done( (data) => {
         var weatherData = data.daily.data;
         $('#weather-info').append('<div class="card">');
+
         var labels = [];
+        var humid  = [];
+
         weatherData.forEach(el => {
           var time = convertDate(el.time);
 
@@ -44,6 +47,7 @@ $(document).ready(function(){
           );
 
           labels.push(time);
+          humid.push(el.humidity);
 
           // if(el.cloudCover > .5){
           //   $('.sun').addClass('cloudy');
@@ -66,7 +70,7 @@ $(document).ready(function(){
               labels: [],
               datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3, 4, 8]
+                data: []
               }]
             },
             options: {
@@ -81,6 +85,10 @@ $(document).ready(function(){
             }
             labels.forEach( el => {
               d.data.labels.push(el)
+            })
+
+            humid.forEach( el => {
+              d.data.datasets[0].data.push(el)
             })
             console.log(d.data.labels);
 
