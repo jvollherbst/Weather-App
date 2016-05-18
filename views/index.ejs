@@ -14,35 +14,46 @@
             <% if (user) {%>
               <li>Welcome <%= user.email %></li>
             <% } %>
-            <li><a href="/users/login">Login</a></li>
-            <li><a href="/users/new">Sign Up</a></li>
-            <li>
-  <form method="post" action="/users/logout?_method=DELETE">
-    <button class="logout">logout</button>
-  </form>
-</li>
+              <li><a href="/users/login">Login</a></li>
+              <li><a href="/users/new">Sign Up</a></li>
+              <li>
+              <form method="post" action="/users/logout?_method=DELETE">
+                <button class="logout">logout</button>
+              </form>
+            </li>
           </ul>
         </nav>
       </header>
-        <div class="twelve columns">
+
+    <div class="twelve columns">
 
       <h1>Weather App</h1>
 
-
       <form>
         <label>Enter your location</label>
-        <input type="text" placeholder="City, State" name="address" id="address">
+        <input type="text" placeholder="City, State" name="address" id="address" size="50">
 
         <input type="button" id="submit-btn" value="submit">
       </form>
-      <div id="weather-current">
+
+      <hr />
+    </div>
+
+    <div class="twelve columns">
+      <div class="four columns">
+        <div id="weather-current">
+        </div>
       </div>
 
+      <div class="seven columns">
       <div id="weather-info"></div>
 
       <div id="weather-info-daily"></div>
 
-      <div id="weather-chart"></div>
+    </div>
+    
+    <div id="weather-chart"></div>
+
     </div>
   </div>
 </div>

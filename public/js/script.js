@@ -115,9 +115,11 @@ $(document).ready(function(){
               labels: [],
               datasets: [{
                 label: 'Precipitation Probability',
-                data: []
+                data: [],
+                borderColor: '#555555'
               }]
             },
+
             options: {
               scales: {
                 yAxes: [{
