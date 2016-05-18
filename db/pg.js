@@ -4,6 +4,12 @@ const salt             = bcrypt.genSaltSync(10);
 const session          = require('express-session');
 const connectionString = process.env.DATABASE_URL;
 
+if (process.env.NODE_ENV === 'production') {
+      var connectionString = process.env.DATABASE_URL;
+    } else {
+      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
+    }
+
 function loginUser(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;

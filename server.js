@@ -16,6 +16,12 @@ const pgSession = require('connect-pg-simple')(session);
 const connectionString = process.env.DATABASE_URL;
 const api_key     = process.env.API_KEY;
 
+if (process.env.NODE_ENV === 'production') {
+      var connectionString = process.env.DATABASE_URL;
+    } else {
+      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
+    }
+
 app.use(session({
   store: new pgSession({
     pg : pg,
