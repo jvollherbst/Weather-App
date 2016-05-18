@@ -41,7 +41,7 @@ app.set('view engine', 'ejs')
 app.get('/weather/:address', (req, res) => {
 
   request(
-    { url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.address,
+    { url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.address + process.env.GEOKEY,
   json: true },
     function(err, apires, body) {
 
