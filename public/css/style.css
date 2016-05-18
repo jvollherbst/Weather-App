@@ -30,6 +30,7 @@ button.logout {
   border: 0;
   height: 0;
   line-height: 0;
+  font-family: "Lora", serif;
 }
 
 .wrapper:before {

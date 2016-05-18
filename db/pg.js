@@ -71,7 +71,6 @@ function showSearches(req, res, next) {
       console.log(err);
       return res.status(500).json({ success: false, data: err});
     }
-
     var query = client.query(`SELECT * FROM searches WHERE user_id = $1`,
     [req.session.user.users_id],
     function(err, result) {
@@ -79,6 +78,7 @@ function showSearches(req, res, next) {
       if(err) {
         return console.error('error, running query', err);
       }
+      res.rows = result.rows;
       next()
     });
   });

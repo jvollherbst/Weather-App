@@ -20,32 +20,16 @@ $(document).ready(function(){
     return weatherDate;
   }
 
-  // $.get('/searches')
-  //   .done( (data) => {
-  //     var currentconvertDate(currentWeather.time);
-  //
-  //     if(currentDamoment().format("MM/DD/YYYY")) {
-  //
-  //       $('#weather-current').append(
-  //         '<div class="current"><h5>Today<p>'
-  //         + $('#address').val() +
-  //         '</p> <p>'
-  //         + currentDate +
-  //         '</p> <p>'
-  //         Math.round(currentWeather.temper+ '&deg;' +
-  //         '</p> <p> Humidity: '
-  //         + currentWeather.humidity +
-  //         '</p> <p> Wind Speed: '
-  //         + currentWeather.windSpeed +
-  //         '</p> <p> Cloud Cover: '
-  //         + currentWeather.cloudCover  +
-  //         '</p> <p> Summary: '
-  //         + currentWeather.summary +
-  //         '</p> ' +
-  //         '<class="save-info">Save</button></div>'
-  //       );
-  //     }
-  //   }
+  $.get('/searches/all')
+    .done( (data) => {
+
+        $('#weather-current').append('<div class="searches"><h3>Past Searches</h3>');
+        data.forEach(el => {
+          $('.searches').append(
+            '<p>' + el.location + '</p>'
+          );
+      })
+    });
 
 
   $('#submit-btn').on('click', function() {
@@ -56,12 +40,12 @@ $(document).ready(function(){
     $.get('/weather/' + $('#address').val())
       .done( (data) => {
         var weatherData = data.hourly.data;
-        var currentWeather = data.currently;
-
-        $('#weather-info').append('<div class="card">   <h3>Hourly Weather</h3>');
+        var dailyWeather = data.daily.data;
 
         var labels = [];
         var precip  = [];
+
+        $('#weather-info').append('<div class="hourly card"><h3>Hourly Weather</h3>');
 
         weatherData.forEach(el => {
           var date = convertDate(el.time);
@@ -69,7 +53,7 @@ $(document).ready(function(){
 
           if(date === moment().format("MM/DD/YYYY")) {
 
-          $('.card').append(
+          $('.hourly').append(
             '<div class="forecast"><p>'
             + date +
             '</p> <p>'
@@ -93,7 +77,34 @@ $(document).ready(function(){
           labels.push(date);
           precip.push(el.precipProbability);
 
-        })
+        });
+
+        $('#weather-info-daily').append('<div class="daily card"> <h3>Daily Weather</h3>');
+
+        dailyWeather.forEach(el => {
+          var date = convertDate(el.time);
+          var time = convertHour(el.time);
+
+          $('.daily').append(
+            '<div class="forecast"><p>'
+            + date +
+            '</p> <p>'
+            + Math.round(el.temperatureMax) + '&deg; | ' +
+            + Math.round(el.temperatureMin) + '&deg;' +
+            '</p> <p> Humidity: '
+            + el.humidity +
+            '</p> <p> Wind Speed: '
+            + el.windSpeed +
+            '</p> <p> Visibility: '
+            + el.visibility +
+            '</p> <p> Cloud Cover: '
+            + el.cloudCover  +
+            '</p> <p> Summary: '
+            + el.summary +
+            '</p> </div>'
+          );
+
+        });
 
           $('#weather-chart').append('<canvas id="myChart" width="400" height="400"></canvas>')
 
