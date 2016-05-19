@@ -18,8 +18,6 @@ const api_key     = process.env.API_KEY;
 
 if (process.env.NODE_ENV === 'production') {
       connectionString = process.env.DATABASE_URL;
-    } else {
-      connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
     }
 
 app.use(session({

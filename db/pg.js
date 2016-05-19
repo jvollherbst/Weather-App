@@ -6,8 +6,6 @@ const connectionString = process.env.DATABASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
        connectionString = process.env.DATABASE_URL;
-    } else {
-       connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
     }
 
 function loginUser(req, res, next) {
