@@ -1,6 +1,9 @@
 {
   "name": "bluewolf-challenge-two",
   "version": "3.8.9",
+  "engines": {
+    "node": "6.2.0"
+  },
   "description": "",
   "main": "server.js",
   "dependencies": {
