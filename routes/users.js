@@ -1,7 +1,7 @@
 'use strict'
-const express     = require('express');
-const users = express.Router();
-const db    = require('./../db/pg');
+var express     = require('express');
+var users = express.Router();
+var db    = require('./../db/pg');
 
 users.route('/')
   .post(db.createUser, (req, res) => {

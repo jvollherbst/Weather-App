@@ -1,8 +1,8 @@
-const pg               = require('pg');
-const bcrypt           = require('bcrypt');
-const salt             = bcrypt.genSaltSync(10);
-const session          = require('express-session');
-const connectionString = process.env.DATABASE_URL;
+var pg               = require('pg');
+var bcrypt           = require('bcrypt');
+var salt             = bcrypt.genSaltSync(10);
+var session          = require('express-session');
+var connectionString = process.env.DATABASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
        connectionString = process.env.DATABASE_URL;

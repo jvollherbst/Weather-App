@@ -1,20 +1,20 @@
 'use strict'
 
 require('dotenv').config();
-const express     = require('express');
-const logger      = require('morgan');
-const bodyParser  = require('body-parser');
-const methodOverride    = require('method-override');
-const path        = require('path');
-const request     = require('request');
-const db          = require('./db/pg');
-const moment      = require('moment');
-const app         = express();
-const session       = require('express-session');
-const pg            = require('pg');
-const pgSession = require('connect-pg-simple')(session);
-const connectionString = process.env.DATABASE_URL;
-const api_key     = process.env.API_KEY;
+var express     = require('express');
+var logger      = require('morgan');
+var bodyParser  = require('body-parser');
+var methodOverride    = require('method-override');
+var path        = require('path');
+var request     = require('request');
+var db          = require('./db/pg');
+var moment      = require('moment');
+var app         = express();
+var session       = require('express-session');
+var pg            = require('pg');
+var pgSession = require('connect-pg-simple')(session);
+var connectionString = process.env.DATABASE_URL;
+var api_key     = process.env.API_KEY;
 
 if (process.env.NODE_ENV === 'production') {
       connectionString = process.env.DATABASE_URL;
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(session({
   store: new pgSession({
     pg : pg,
-    conString : connectionString,
+    varring : connectionString,
     tableName : 'session'
   }),
   secret: process.env.SECRET,
@@ -73,5 +73,5 @@ app.get('/', (req, res) => {
 
 app.use('/users', require(path.join(__dirname, '/routes/users')));
 
-const port   = process.env.PORT || 3000;
+var port   = process.env.PORT || 3000;
 app.listen(port);
