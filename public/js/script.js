@@ -19,24 +19,24 @@ $(document).ready(function(){
 
     return weatherDate;
   }
-
-  $.get('/searches/all')
-    .done( (data) => {
-
-        $('#weather-current').append('<div class="searches"><h3>Past Searches</h3>');
-        data.forEach(el => {
-          $('.searches').append(
-            '<p>' + el.location + '</p>'
-          );
-      })
-    });
+  // 
+  // $.get('/searches/all')
+  //   .done( (data) => {
+  //
+  //       $('#weather-current').append('<div class="searches"><h3>Past Searches</h3>');
+  //       data.forEach(el => {
+  //         $('.searches').append(
+  //           '<p>' + el.location + '</p>'
+  //         );
+  //     })
+  //   });
 
 
   $('#submit-btn').on('click', function() {
-    // event.preventDefault();
+    event.preventDefault();
 
-    // $('#weather-info').empty();
-    // $('#weather-info-daily').empty();
+    $('#weather-info').empty();
+    $('#weather-info-daily').empty();
 
     $.get('/weather/' + $('#address').val())
       .done( (data) => {
@@ -148,8 +148,8 @@ $(document).ready(function(){
                 longitude: data.longitude
               };
 
-              $.post('/searches', searchData)
-               .done((data) => {})
+              // $.post('/searches', searchData)
+              //  .done((data) => {})
 
           })
         })
