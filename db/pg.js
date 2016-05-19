@@ -5,9 +5,9 @@ const session          = require('express-session');
 const connectionString = process.env.DATABASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
-      var connectionString = process.env.DATABASE_URL;
+       connectionString = process.env.DATABASE_URL;
     } else {
-      var connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
+       connectionString = 'postgres://jasminecardoza:' + process.env.DB_PASSWORD + '@localhost/weather';
     }
 
 function loginUser(req, res, next) {
