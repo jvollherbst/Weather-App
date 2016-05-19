@@ -36,6 +36,7 @@ $(document).ready(function(){
     event.preventDefault();
 
     $('#weather-info').empty();
+    $('#weather-info-daily').empty();
 
     $.get('/weather/' + $('#address').val())
       .done( (data) => {

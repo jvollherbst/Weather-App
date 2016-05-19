@@ -64,12 +64,24 @@ app.get('/searches/all', db.showSearches, (req, res) => {
 
 app.post('/searches', db.addSearches, (req, res) => {})
 
+app.get('/searches', (req, res) => {
+  if(req.session.user){
+    res.render('searches/index', {
+      user: req.session.user
+    })
+  }
+  else {
+    res.redirect('/');
+  }
+})
+
 app.get('/', (req, res) => {
   res.render('index', {
     user: req.session.user
   })
 
 });
+
 
 app.use('/users', require(path.join(__dirname, '/routes/users')));
 

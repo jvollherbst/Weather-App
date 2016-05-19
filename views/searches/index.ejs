@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include ./partials/header %>
+  <%- include ../partials/header %>
 </head>
 
 <body>
@@ -28,25 +28,35 @@
     <div class="twelve columns">
 
       <h1>Weather App</h1>
-      <h2>Register: </h2>
 
-      <form action="/users" method="post">
+      <form>
+        <label>Enter your location</label>
+        <input type="text" placeholder="City, State" name="address" id="address" size="50">
 
-        <div>
-          <label for="email">email</label>
-          <input type="text" name="email">
-        </div>
-
-        <div>
-          <label for="password">password</label>
-          <input type="password" name="password">
-        </div>
-
-        <input type="submit" value="Submit">
+        <input type="button" id="submit-btn" value="submit">
       </form>
 
       <hr />
     </div>
+
+    <div class="twelve columns">
+      <div class="four columns">
+        <div id="weather-current">
+        </div>
+      </div>
+
+      <div class="seven columns">
+      <div id="weather-info"></div>
+
+      <div id="weather-info-daily"></div>
+
+    </div>
+
+    <div id="weather-chart"></div>
+
+    </div>
+  </div>
+</div>
 
 
 </body>

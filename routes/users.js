@@ -5,7 +5,7 @@ var db    = require('./../db/pg');
 
 users.route('/')
   .post(db.createUser, (req, res) => {
-    res.redirect('/');
+    res.redirect('users/login');
   })
 
 users.get('/new', (req, res) => {
@@ -13,14 +13,14 @@ users.get('/new', (req, res) => {
 })
 
 users.get('/login', (req, res) => {
-  res.render('users/login.ejs', { user: req.session.user });
+  res.render('users/login', { user: req.session.user });
 })
 
 users.post('/login', db.loginUser, (req, res) => {
   req.session.user = res.rows;
 
   req.session.save(function() {
-    res.redirect('/');
+    res.redirect('/searches');
   });
 })
 
