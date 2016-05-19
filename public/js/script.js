@@ -33,10 +33,10 @@ $(document).ready(function(){
 
 
   $('#submit-btn').on('click', function() {
-    event.preventDefault();
+    // event.preventDefault();
 
-    $('#weather-info').empty();
-    $('#weather-info-daily').empty();
+    // $('#weather-info').empty();
+    // $('#weather-info-daily').empty();
 
     $.get('/weather/' + $('#address').val())
       .done( (data) => {
