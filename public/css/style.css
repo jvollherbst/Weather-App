@@ -1,5 +1,4 @@
 body {
-  /*background-color: #37B2FF;*/
   background-color: #333333;
 }
 
@@ -41,9 +40,6 @@ button.logout {
   margin: 0;
   top: 0;
   left: 0;
-  /*background-image: url('../images/photo-1448814100339-234df1d4005d.jpeg');
-  background-size: cover;
-  background-position: center;*/
   width: 100%;
   overflow-x: hidden;
   height: 100%;
@@ -55,7 +51,6 @@ button.logout {
   margin-bottom: 3em;
   width: 8em;
   height: 8em;
-  /*background-color: yellow;*/
   border-radius: 100px;
 }
 

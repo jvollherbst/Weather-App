@@ -1,20 +1,20 @@
 'use strict'
 
 require('dotenv').config();
-var express     = require('express');
-var logger      = require('morgan');
-var bodyParser  = require('body-parser');
-var methodOverride    = require('method-override');
-var path        = require('path');
-var request     = require('request');
-var db          = require('./db/pg');
-var moment      = require('moment');
-var app         = express();
-var session       = require('express-session');
-var pg            = require('pg');
+var express         = require('express');
+var logger          = require('morgan');
+var bodyParser      = require('body-parser');
+var methodOverride  = require('method-override');
+var path            = require('path');
+var request         = require('request');
+var db              = require('./db/pg');
+var moment          = require('moment');
+var app             = express();
+var session         = require('express-session');
+var pg              = require('pg');
 var pgSession = require('connect-pg-simple')(session);
 var connectionString = process.env.DATABASE_URL;
-var api_key     = process.env.API_KEY;
+var api_key          = process.env.API_KEY;
 
 if (process.env.NODE_ENV === 'production') {
       connectionString = process.env.DATABASE_URL;
