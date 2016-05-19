@@ -50,7 +50,7 @@ app.get('/weather/:address', (req, res) => {
     function(err, apires, body) {
       console.log(body);
       let query = [body.results[0].geometry.location.lat, body.results[0].geometry.location.lng];
-
+      console.log(query);
       request({ url: api_key + query, json: true },
         function(err, apires, apibody) {
           res.send(apibody)
