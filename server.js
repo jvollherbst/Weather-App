@@ -48,7 +48,7 @@ app.get('/weather/:address', (req, res) => {
     { url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.address,
   json: true },
     function(err, apires, body) {
-
+      console.log(body);
       let query = [body.results[0].geometry.location.lat, body.results[0].geometry.location.lng];
 
       request({ url: api_key + query, json: true },
