@@ -26,7 +26,7 @@ app.use(session({
     varring : connectionString,
     tableName : 'session'
   }),
-  secret: 's',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
