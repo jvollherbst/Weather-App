@@ -74,4 +74,4 @@ app.get('/', (req, res) => {
 app.use('/users', require(path.join(__dirname, '/routes/users')));
 
 const port   = process.env.PORT || 3000;
-const server = app.listen(port, function( ){});
+app.listen(port);
